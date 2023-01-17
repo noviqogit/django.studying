@@ -18,5 +18,5 @@ from django.urls import path
 from tutorial import views
 
 urlpatterns = [
-    path('one', views.func),
+    path('<variable>', views.func),
 ]

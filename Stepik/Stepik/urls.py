@@ -19,6 +19,5 @@ from tutorial import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('respose', views.func),
     path('resource/', include('tutorial.urls')),
 ]
