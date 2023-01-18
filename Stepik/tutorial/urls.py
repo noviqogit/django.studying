@@ -20,7 +20,8 @@ from tutorial import views, converters
 register_converter(converters.FourDigitYearConverter, 'yyyy')
 
 urlpatterns = [
+    path('', views.index),
     path('<yyyy:variable>', views.numeric_func),
     path('<int:variable>', views.numeric_func),
-    path('<variable>', views.func),
+    path('<variable>', views.func, name='main-link'),
 ]
