@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 
 # Create your views here.
 
 def numeric_func(request, variable: int):
-    return HttpResponse(f'respose {variable}')
+    directions = {1: 'one', 2: 'two'}
+    value = directions.get(variable, 'soething')
+    return HttpResponseRedirect(f'/resource/{value}')
 
 
 def func(request, variable: str):
