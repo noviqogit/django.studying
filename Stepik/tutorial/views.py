@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -30,4 +31,5 @@ def func(request, variable: str):
         return HttpResponse('respose_one')
     if variable == 'two':
         return HttpResponse('respose_two')
-    return HttpResponseNotFound(f'{variable}')
+    response = render_to_string('tutorial/index.html')
+    return HttpResponseNotFound(f'{response}')
