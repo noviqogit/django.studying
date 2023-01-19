@@ -1,15 +1,20 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from django.template.loader import render_to_string
 
 # Create your views here.
 
-directions = {1: 'one',
-              2: 'two',
-              3: 'three',
-              4: 'four',
-              'key': 'answer'}
+directions = {
+    'key': 'answer',
+    'key2': 'answer2',
+    'key3': 'answer3'
+}
+
+years = {
+    1995: 'one',
+    2000: 'two',
+    3000: 'four'
+}
 
 
 def index(request):
@@ -22,16 +27,12 @@ def index(request):
 
 
 def numeric_func(request, variable: int):
-    value = directions.get(variable, 'soething')
+    value = years.get(variable, 'something')
     path = reverse('main-link', args=((value),))
     return HttpResponseRedirect(path)
 
 
-def func(request, variable: str):
-    if variable == 'one':
-        return HttpResponse('respose_one')
-    if variable == 'two':
-        return HttpResponse('respose_two')
+def page(request, variable: str):
     data = {
         'dtl_directions': directions,
         'dtl_variable': variable
