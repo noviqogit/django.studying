@@ -8,7 +8,8 @@ from django.template.loader import render_to_string
 directions = {1: 'one',
               2: 'two',
               3: 'three',
-              4: 'four'}
+              4: 'four',
+              'key': 'answer'}
 
 
 def index(request):
@@ -31,5 +32,9 @@ def func(request, variable: str):
         return HttpResponse('respose_one')
     if variable == 'two':
         return HttpResponse('respose_two')
-    response = render_to_string('tutorial/index.html')
-    return HttpResponseNotFound(f'{response}')
+    data = {
+        'dtl_directions': directions,
+        'dtl_variable': variable
+    }
+    response = render(request, 'tutorial/index.html', context=data)
+    return HttpResponse(response)
