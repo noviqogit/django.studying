@@ -33,8 +33,9 @@ def numeric_func(request, variable: int):
 
 
 def page(request, variable: str):
+    key = directions.get(variable)
     data = {
-        'dtl_directions': directions,
+        'dtl_key': key,
         'dtl_variable': variable
     }
     response = render(request, 'tutorial/index.html', context=data)
