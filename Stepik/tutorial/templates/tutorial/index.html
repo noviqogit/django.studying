@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Response</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1> for {{dtl_variable|upper}} response is {{dtl_key|default:'No such key'}}</h1>
     <p> {% if dtl_variable|length <= 3 %}
             first case
@@ -14,5 +10,4 @@
             another cases
         {% endif %}
     </p>
-</body>
-</html>
+{% endblock %}
