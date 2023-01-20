@@ -17,12 +17,11 @@ years = {
 }
 
 
-def index(request):
-    keys = ''
-    for key in directions:
-        path = reverse('main-link', args=((key),))
-        keys += f"<li> <a href='{path}'> {key} </a> </li>"
-    response = '<ul>' + keys + '</ul>'
+def menu(request):
+    data = {
+        'dtl_directions': directions,
+    }
+    response = render(request, 'tutorial/menu.html', context=data)
     return HttpResponse(response)
 
 
