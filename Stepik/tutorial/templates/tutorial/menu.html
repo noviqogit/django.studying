@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block head-css %}
+<link href="{% static '/tutorial/css/menu.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 {% include 'includes/navbar.html' %}
 <p>

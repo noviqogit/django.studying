@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block head-css %}
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 
 {% include 'includes/navbar.html' only with dtl_key="only param" %}
