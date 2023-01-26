@@ -23,4 +23,17 @@ row.int_column = value
 row.save()
 row.delete()
 
+
 Tables.objects.create(char_column = value, char_int = value)
+
+
+
+# только для уникальной существующей записи
+row =  Table.objects.get(int_column = value)
+
+# greater than or equal
+row =  Table.objects.filter(int_column__gte=value, char_column__isnull=True)
+row =  Table.objects.exclude(id__in=[1,2,3])
+
+from django.db.models import Q
+row =  Table.objects.filter(Q(int_column=value) | ~Q(char_column=value))
