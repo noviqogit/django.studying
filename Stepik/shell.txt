@@ -1,0 +1,16 @@
+ipython
+python3 manage.py shell
+
+
+ctrl + z # exit
+
+from tutorial.models import Table
+row = Table(char_column='first', int_column=10)
+row.save()
+
+
+from django.db import connection
+connection.queries
+
+django-extensions
+python3 manage.py shell_plus --print-sql
