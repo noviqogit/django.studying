@@ -15,4 +15,8 @@
     {% endfor %}
 </ul>
 </p>
+    {% for row in dtl_table %}
+        {{row.char_column}} - {{row.int_column}}<br>
+    {% endfor %}
 {% endblock %}
+

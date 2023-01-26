@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
 # Create your views here.
+from .models import Table
 
 directions = {
     'key': 'answer',
@@ -18,8 +19,10 @@ years = {
 
 
 def menu(request):
+    table = Table.objects.all()
     data = {
         'dtl_directions': directions,
+        'dtl_table': table
     }
     response = render(request, 'tutorial/menu.html', context=data)
     return HttpResponse(response)
