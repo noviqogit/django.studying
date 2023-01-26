@@ -14,3 +14,13 @@ connection.queries
 
 django-extensions
 python3 manage.py shell_plus --print-sql
+
+
+Table.objects.all()
+row =  Table.objects.all()[0]
+row.char_column
+row.int_column = value
+row.save()
+row.delete()
+
+Tables.objects.create(char_column = value, char_int = value)
