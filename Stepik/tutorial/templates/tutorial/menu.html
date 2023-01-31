@@ -15,8 +15,10 @@
     {% endfor %}
 </ul>
 </p>
+<ul>
     {% for row in dtl_table %}
-        {{row.char_column}} - {{row.int_column}}<br>
+    <a href="{{row.get_url}}">>{{row.char_column}} - {{row.int_column}}</a><br>
     {% endfor %}
+</ul>
 {% endblock %}
 

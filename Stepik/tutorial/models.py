@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 
 # Create your models here.
 
@@ -9,3 +9,6 @@ class Table(models.Model):
 
     def __str__(self):
         return f'{self.char_column} - {self.int_column}'
+
+    def get_url(self):
+        return reverse('get_link', args=[self.id])

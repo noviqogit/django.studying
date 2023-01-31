@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
@@ -25,6 +25,12 @@ def menu(request):
         'dtl_table': table
     }
     response = render(request, 'tutorial/menu.html', context=data)
+    return HttpResponse(response)
+
+
+def get_row(request, id: int):
+    row = get_object_or_404(Table, id=id)
+    response = render(request, 'tutorial/page.html', context={'row_dtl': row})
     return HttpResponse(response)
 
 
