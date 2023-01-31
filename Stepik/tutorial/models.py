@@ -2,11 +2,12 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
+
 # Create your models here.
 
 class Table(models.Model):
     char_column = models.CharField(max_length=40)
-    int_column = models.IntegerField()
+    int_column = models.IntegerField(null=True, blank=True)  # позволяет сохранять пустые значения
     int_column2 = models.IntegerField(default=0)
     slug = models.SlugField(default='', null=False, db_index=True)
 

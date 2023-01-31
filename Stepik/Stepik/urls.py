@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from tutorial import views
 
+admin.site.site_header = 'You @'
+admin.site.site_header = 'Dirty Harry'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.menu),
