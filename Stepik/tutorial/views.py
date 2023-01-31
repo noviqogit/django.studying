@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from django.db.models import F, Sum, Max, Min, Count, Avg
+from django.db.models import F, Sum, Max, Min, Count, Avg, Value
 
 # table = Table.objects.all()
 
@@ -25,7 +25,11 @@ years = {
 
 def menu(request):
     # table = Table.objects.order_by('int_column', 'char_column')
-    table = Table.objects.order_by(F('int_column').desc(nulls_last=True))
+    # table = Table.objects.order_by(F('int_column').desc(nulls_last=True))
+    table = Table.objects.annotate(
+        new_field_bool=Value(True),
+        new_field_=F('int_column') * F('int_column2'),
+    )
     agg = table.aggregate(Sum('int_column'), Avg('int_column2'), Count('id'))
     # for row in table:
     #     row.save()
