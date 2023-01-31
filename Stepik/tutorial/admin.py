@@ -7,10 +7,12 @@ class TableAdmin(admin.ModelAdmin):
     list_display = ['char_column',  # первое значение является ссылочным, нельзя редактировать
                     'int_column',
                     'int_column2',
-                    'annotaton'
+                    'annotaton',
+                    'choice'
                     ]
     list_editable = ['int_column',
                      'int_column2',
+                     'choice'
                      ]
     ordering = ['int_column',
                 'int_column2',
