@@ -20,6 +20,8 @@ years = {
 
 def menu(request):
     table = Table.objects.all()
+    # for row in table:
+    #     row.save()
     data = {
         'dtl_directions': directions,
         'dtl_table': table
@@ -28,8 +30,8 @@ def menu(request):
     return HttpResponse(response)
 
 
-def get_row(request, id: int):
-    row = get_object_or_404(Table, id=id)
+def get_row(request, name: int):
+    row = get_object_or_404(Table, slug=name)
     response = render(request, 'tutorial/page.html', context={'row_dtl': row})
     return HttpResponse(response)
 
