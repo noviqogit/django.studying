@@ -20,5 +20,6 @@
     <a href="{{row.get_url}}">>{{row.char_column}} - {{row.int_column}}</a><br>
     {% endfor %}
 </ul>
+<h2> {{dtl_agg.int_column__sum}}<br>{{dtl_agg.int_column2__avg}}<br>{{dtl_agg.id__count}}</h2>
 {% endblock %}
 
