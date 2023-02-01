@@ -3,6 +3,27 @@ from .models import Table
 from django.db.models import QuerySet
 
 
+class CustomFilter(admin.SimpleListFilter):
+    title = 'int2 filter'
+    parameter_name = 'int_column2'
+
+    def lookups(self, request, model_admin):
+        return [
+            ('<10', 'low'),
+            ('from 10 to 20', 'medium'),
+            ('>=20', 'high'),
+        ]
+
+    def queryset(self, request, queryset: QuerySet):
+        if self.value() == '<10':
+            return queryset.filter(int_column2__lt=10)
+        if self.value() == 'from 10 to 20':
+            return queryset.filter(int_column2__lte=20, int_column2__gt=10)
+        if self.value() == '>=20':
+            return queryset.filter(int_column2__gt=20)
+        return queryset
+
+
 # admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
     list_display = ['char_column',  # первое значение является ссылочным, нельзя редактировать
@@ -22,8 +43,8 @@ class TableAdmin(admin.ModelAdmin):
     actions = ['action_one']
     search_fields = ['char_column__startswith', 'choice']
     list_filter = ['char_column',
-                   'int_column2',
-                   'choice'
+                   'choice',
+                   CustomFilter
                    ]
 
     @admin.display(ordering='int_column', description='status')
