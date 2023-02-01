@@ -20,6 +20,11 @@ class TableAdmin(admin.ModelAdmin):
                 ]
     list_per_page = 5
     actions = ['action_one']
+    search_fields = ['char_column__startswith', 'choice']
+    list_filter = ['char_column',
+                   'int_column2',
+                   'choice'
+                   ]
 
     @admin.display(ordering='int_column', description='status')
     def annotaton(self, row: Table):
