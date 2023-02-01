@@ -26,6 +26,10 @@ class CustomFilter(admin.SimpleListFilter):
 
 # admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
+    # fields = ['char_column', 'int_column', 'int_column2', 'annotaton', 'choice']
+    exclude = ['choice']
+    # readonly_fields = ['slug']
+    prepopulated_fields = {'slug': ('char_column',)}
     list_display = ['char_column',  # первое значение является ссылочным, нельзя редактировать
                     'int_column',
                     'int_column2',
