@@ -1,5 +1,5 @@
 from django.contrib import admin, messages
-from .models import Table
+from .models import Table, Table2
 from django.db.models import QuerySet
 
 
@@ -34,11 +34,13 @@ class TableAdmin(admin.ModelAdmin):
                     'int_column',
                     'int_column2',
                     'annotaton',
-                    'choice'
+                    'choice',
+                    'foreign_column'
                     ]
     list_editable = ['int_column',
                      'int_column2',
-                     'choice'
+                     'choice',
+                     'foreign_column'
                      ]
     ordering = ['int_column',
                 'int_column2',
@@ -69,3 +71,9 @@ class TableAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Table, TableAdmin)
+
+
+@admin.register(Table2)
+class Table2Admin(admin.ModelAdmin):
+    list_display = ['another_column',
+                    ]

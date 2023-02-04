@@ -6,6 +6,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
+class Table2(models.Model):
+    another_column = models.CharField(max_length=40, null=True)
+
+
 class Table(models.Model):
     FRESHMAN = 'FR'
     SOPHOMORE = 'SO'
@@ -24,6 +28,7 @@ class Table(models.Model):
     int_column2 = models.IntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(100)])
     slug = models.SlugField(default='', null=False, db_index=True)
     choice = models.CharField(max_length=2, choices=BUTTOM_CHOICES, default=FRESHMAN)
+    foreign_column = models.ForeignKey(Table2, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return f'{self.char_column} - {self.int_column}'
