@@ -5,6 +5,24 @@
     <title>Response</title>
 </head>
 <body>
-<h3>{{row_dtl.id}} --> {{row_dtl}}</h3>
+<h3>
+    {{row_dtl.foreign_column.another_column}}
+    <br>
+
+    {% for row in row_dtl.foreign_column2.all %}
+        {{row.char_column}}
+        {{row.char_column2}}
+        <br>
+    {% endfor %}
+
+
+    {% for row2 in row_dtl2 %}
+        <br> row from table 2 --> {{row2}} <br>
+        {% for row_ in row2.relations.all %}
+            <br>
+            related-> {{row_}} <-- from table
+        {% endfor %}
+    {% endfor %}
+</h3>
 </body>
 </html>

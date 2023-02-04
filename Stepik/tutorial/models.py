@@ -32,7 +32,7 @@ class Table(models.Model):
     int_column2 = models.IntegerField(default=0, validators=[MinValueValidator(1), MaxValueValidator(100)])
     slug = models.SlugField(default='', null=False, db_index=True)
     choice = models.CharField(max_length=2, choices=BUTTOM_CHOICES, default=FRESHMAN)
-    foreign_column = models.ForeignKey(Table2, on_delete=models.PROTECT, null=True)
+    foreign_column = models.ForeignKey(Table2, on_delete=models.PROTECT, null=True, related_name='relations')
     foreign_column2 = models.ManyToManyField(Table3)
 
     def __str__(self):

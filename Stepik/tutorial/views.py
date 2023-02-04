@@ -8,7 +8,7 @@ from django.db.models import F, Sum, Max, Min, Count, Avg, Value
 # null не учитывается
 
 # Create your views here.
-from .models import Table
+from .models import Table, Table2
 
 directions = {
     'key': 'answer',
@@ -44,7 +44,10 @@ def menu(request):
 
 def get_row(request, name: int):
     row = get_object_or_404(Table, slug=name)
-    response = render(request, 'tutorial/page.html', context={'row_dtl': row})
+    row2 = Table2.objects.all()
+    response = render(request, 'tutorial/page.html',
+                      context={'row_dtl': row,
+                               'row_dtl2': row2})
     return HttpResponse(response)
 
 
