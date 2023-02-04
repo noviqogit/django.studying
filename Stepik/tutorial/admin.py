@@ -1,5 +1,5 @@
 from django.contrib import admin, messages
-from .models import Table, Table2
+from .models import Table, Table2, Table3
 from django.db.models import QuerySet
 
 
@@ -45,6 +45,7 @@ class TableAdmin(admin.ModelAdmin):
     ordering = ['int_column',
                 'int_column2',
                 ]
+    filter_horizontal = ['foreign_column2']
     list_per_page = 5
     actions = ['action_one']
     search_fields = ['char_column__startswith', 'choice']
@@ -76,4 +77,11 @@ admin.site.register(Table, TableAdmin)
 @admin.register(Table2)
 class Table2Admin(admin.ModelAdmin):
     list_display = ['another_column',
+                    ]
+
+
+@admin.register(Table3)
+class Table3Admin(admin.ModelAdmin):
+    list_display = ['char_column',
+                    'char_column2'
                     ]
