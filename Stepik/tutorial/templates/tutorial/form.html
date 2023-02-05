@@ -7,16 +7,14 @@
 <body>
     <form action="/resource/form" method="POST">
         {% csrf_token %}
-        {% if error %}
-            <p>empty name</p>
-        {% endif %}
-        <label for="name"> name: </label>
-        <input type="text" id="name" name="name">
-        <br>
-        <label for="surname"> surname: </label>
-        <input type="number" id="surname" name="surname">
-        <label for="feedback_id"> feedback: </label>
-        <textarea name="feedback" id="feedback_id" cols="30" rows="5"></textarea>
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }}<br>
+                {{ field }}
+                <br><br>
+            </div>
+        {% endfor %}
         <button> Отправить </button>
     </form>
 </body>

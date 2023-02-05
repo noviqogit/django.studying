@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.db.models import F, Sum, Max, Min, Count, Avg, Value
+from .forms import Form
 
 # table = Table.objects.all()
 
@@ -69,9 +70,9 @@ def page(request, variable: str):
 
 def form(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        if len(name) == 0:
-            return render(request, 'tutorial/form.html', context={'error': True})
-        print(name)
-        return HttpResponse('done')
-    return render(request, 'tutorial/form.html', context={'error': False})
+        form = Form(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            return HttpResponse(form)
+    form = Form()
+    return render(request, 'tutorial/form.html', context={'form': form})
