@@ -44,3 +44,9 @@ class Table(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.char_column)
         super().save(args, kwargs)
+
+
+class FeedBack(models.Model):
+    name = models.CharField(max_length=20)
+    surname = models.CharField(max_length=10)
+    feedback = models.TextField()
