@@ -74,5 +74,6 @@ def form(request):
         if form.is_valid():
             print(form.cleaned_data)
             return HttpResponse(form)
-    form = Form()
+    else:
+        form = Form()
     return render(request, 'tutorial/form.html', context={'form': form})
