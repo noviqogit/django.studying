@@ -65,3 +65,7 @@ def page(request, variable: str):
     }
     response = render(request, 'tutorial/index.html', context=data)
     return HttpResponse(response)
+
+
+def form(request):
+    return render(request, 'tutorial/form.html')

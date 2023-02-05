@@ -22,5 +22,6 @@ register_converter(converters.FourDigitYearConverter, 'yyyy')
 urlpatterns = [
     path('<yyyy:variable>', views.numeric_func),
     path('table/<slug:name>', views.get_row, name='get_link'),
+    path('form', views.form, name='get_form'),
     path('<variable>', views.page, name='main-link'),
 ]
