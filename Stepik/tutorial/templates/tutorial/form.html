@@ -1,14 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title> Feedback </title>
+    <link rel="stylesheet" href="{% static 'tutorial/css/forms.css' %}">
 </head>
 <body>
     <form action="/resource/form" method="POST">
         {% csrf_token %}
         {% for field in form %}
-            <div class="fieldWrapper">
+            <div class="form-style">
                 {{ field.errors }}
                 {{ field.label_tag }}<br>
                 {{ field }}
