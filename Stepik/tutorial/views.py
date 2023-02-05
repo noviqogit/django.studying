@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.db.models import F, Sum, Max, Min, Count, Avg, Value
 from .forms import Form
 from .models import FeedBack
+from django.views import View
 
 # table = Table.objects.all()
 
@@ -90,3 +91,16 @@ def update_form(request, id_form):
     else:
         form = Form(instance=feed)
     return render(request, 'tutorial/form.html', context={'form': form})
+
+
+class FeedBackView(View):
+    def get(self, request):
+        form = Form()
+        return render(request, 'tutorial/form.html', context={'form': form})
+
+    def post(self, request):
+        form = Form(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(form)
+        return render(request, 'tutorial/form.html', context={'form': form})

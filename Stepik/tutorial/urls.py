@@ -22,7 +22,7 @@ register_converter(converters.FourDigitYearConverter, 'yyyy')
 urlpatterns = [
     path('<yyyy:variable>', views.numeric_func),
     path('table/<slug:name>', views.get_row, name='get_link'),
-    path('form', views.form, name='get_form'),
-    path('form/<int:id_form>', views.update_form, name='update_form'),
+    path('form', views.FeedBackView.as_view(), name='get_form'),
+    path('form/<int:id_form>', views.FeedBackView.post, name='update_form'),
     path('<variable>', views.page, name='main-link'),
 ]
