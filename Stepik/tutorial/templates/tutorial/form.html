@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'tutorial/css/forms.css' %}">
 </head>
 <body>
-    <form action="/resource/form" method="POST">
+    <form method="POST">
         {% csrf_token %}
         {% for field in form %}
             <div class="form-style">

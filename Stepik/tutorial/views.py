@@ -73,11 +73,20 @@ def form(request):
     if request.method == 'POST':
         form = Form(request.POST)
         if form.is_valid():
-            feed = FeedBack(name=form.cleaned_data['name'],
-                            surname=form.cleaned_data['surname'],
-                            feedback=form.cleaned_data['feedback'])
-            feed.save()
+            form.save()
             return HttpResponse(form)
     else:
         form = Form()
+    return render(request, 'tutorial/form.html', context={'form': form})
+
+
+def update_form(request, id_form):
+    feed = FeedBack.objects.get(id=id_form)
+    if request.method == 'POST':
+        form = Form(request.POST, instance=feed)
+        if form.is_valid():
+            form.save()
+            return HttpResponse(form)
+    else:
+        form = Form(instance=feed)
     return render(request, 'tutorial/form.html', context={'form': form})
