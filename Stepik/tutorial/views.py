@@ -68,4 +68,10 @@ def page(request, variable: str):
 
 
 def form(request):
-    return render(request, 'tutorial/form.html')
+    if request.method == 'POST':
+        name = request.POST['name']
+        if len(name) == 0:
+            return render(request, 'tutorial/form.html', context={'error': True})
+        print(name)
+        return HttpResponse('done')
+    return render(request, 'tutorial/form.html', context={'error': False})

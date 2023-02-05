@@ -5,8 +5,11 @@
     <title> Feedback </title>
 </head>
 <body>
-    <form action="/" method="POST">
+    <form action="/resource/form" method="POST">
         {% csrf_token %}
+        {% if error %}
+            <p>empty name</p>
+        {% endif %}
         <label for="name"> name: </label>
         <input type="text" id="name" name="name">
         <br>
